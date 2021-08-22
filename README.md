@@ -48,5 +48,29 @@ FuzzyStringComparisonTolerance tolerance = FuzzyStringTolerance.Strong;
 bool result = source.ApproximatelyEquals(target, options, tolerance);
 ```
 
+## Matching Score
+Gets a match score for a comparison of two strings.
+
+```csharp
+string source = "kevin"
+List<string> targets = new List<string> { "kevyn", "Kevinn", "grace"}
+
+List<FuzzyStringComparisonOptions> options = new List<FuzzyStringComparisonOptions>();
+
+// Choose which algorithms should weigh in for the comparison
+options.Add(FuzzyStringComparisonOptions.UseOverlapCoefficient);
+options.Add(FuzzyStringComparisonOptions.UseLongestCommonSubsequence);
+options.Add(FuzzyStringComparisonOptions.UseLongestCommonSubstring);
+
+string bestMatch = string.Empty;
+double highestScore = 0.0;
+foreach (string target in targets) {
+  double score = source.MatchingScore(target, options);
+  if (score > highestScore) {
+    bestMatch = target;
+    highestScore = score;
+  }
+}
+
 [legacy documentation]: http://fuzzystring.codeplex.com/wikipage?title=Using%20the%20ApproximatelyEquals%28%29%20Extension&referringTitle=Documentation
 
