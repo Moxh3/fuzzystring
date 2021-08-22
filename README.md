@@ -46,7 +46,7 @@ bool result = source.ApproximatelyEquals(target, options, tolerance);
 ```
 
 ## Best Match
-Gets a match score for a comparison of two strings.
+Gets the string that matches best.
 
 ```csharp
 string source = "kevin"
