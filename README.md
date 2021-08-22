@@ -1,9 +1,6 @@
 # fuzzystringy
 Approximate String Comparision in C#, forked from kdjones
 
-*Originally Hosted on Codplex*
-http://fuzzystring.codeplex.com
-
 ## Project Description
 
 FuzzyString is a library developed for use in my day job for reconciling naming conventions between different models of the electric grid. I have stripped off the power system specific code and put together what can effectively be used as a string extension for determining approximate equality between two strings. All of the algorithms used here have been pulled from online resources, translated into C#, and compiled into this library. I found several other similar open-source implementations around but nothing for .NET/C#. Adding the *.dll to your project will give you access to this extension and the individual extensions under the hood of the ApproximatelyEquals() extension.
@@ -48,7 +45,7 @@ FuzzyStringComparisonTolerance tolerance = FuzzyStringTolerance.Strong;
 bool result = source.ApproximatelyEquals(target, options, tolerance);
 ```
 
-## Matching Score
+## Best Match
 Gets a match score for a comparison of two strings.
 
 ```csharp
@@ -62,15 +59,7 @@ options.Add(FuzzyStringComparisonOptions.UseOverlapCoefficient);
 options.Add(FuzzyStringComparisonOptions.UseLongestCommonSubsequence);
 options.Add(FuzzyStringComparisonOptions.UseLongestCommonSubstring);
 
-string bestMatch = string.Empty;
-double highestScore = 0.0;
-foreach (string target in targets) {
-  double score = source.MatchingScore(target, options);
-  if (score > highestScore) {
-    bestMatch = target;
-    highestScore = score;
-  }
-}
+string bestMatch = source.GetBestMatch(targets, options);
 
 [legacy documentation]: http://fuzzystring.codeplex.com/wikipage?title=Using%20the%20ApproximatelyEquals%28%29%20Extension&referringTitle=Documentation
 
