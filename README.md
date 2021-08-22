@@ -1,5 +1,5 @@
-# fuzzystring
-Approximate String Comparision in C#
+# fuzzystringy
+Approximate String Comparision in C#, forked from kdjones
 
 *Originally Hosted on Codplex*
 http://fuzzystring.codeplex.com
